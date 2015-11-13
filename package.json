@@ -10,6 +10,7 @@
   "license": "MIT",
   "author": "HiDeo",
   "contributors": [  ],
+  "main": "index.html",
   "repository": {
     "type": "git",
     "url": "https://github.com/HiDeoo/Unanimity.git"
@@ -21,5 +22,14 @@
   "engines": {
     "node" : "*"
   },
-  "private": true
+  "private": true,
+  "window": {
+    "title": "Unanimity",
+    "icon": "icon.png",
+    "toolbar": false,
+    "width": 500,
+    "height": 240,
+    "position": "center",
+    "resizable": false
+  }
 }

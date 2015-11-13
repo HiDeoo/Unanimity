@@ -3,6 +3,7 @@
  */
 
 var fs = require("fs");
+var process = require("process");
 var wrench = require("wrench");
 var asar = require("asar");
 
@@ -15,14 +16,33 @@ var packageLineNumber;
 var appIndexPath = "/app/index.js";
 var appPackagePath = "/app/package.json";
 
-function init()
+function exit()
 {
-	install();
+    process.exit();
+}
+
+/*
+ type 0: message
+ type 1: error
+ */
+function log(message, type)
+{
+    document.getElementById("logs").innerHTML = message;
+
+    if (type == 0) {
+        document.getElementById("logs").className = "message";
+    } else if (type == 1) {
+        document.getElementById("logs").className = "error";
+        document.getElementById("exitButton").disabled = false;
+    }
 }
 
 function install()
 {
-	if (typeof discordPath == "undefined") {
+    document.getElementById("installButton").disabled = true;
+    document.getElementById("exitButton").disabled = true;
+
+    if (typeof discordPath == "undefined") {
 		var os = process.platform;
 
 		if (os == "darwin") {
@@ -32,49 +52,47 @@ function install()
 			functionCallLineNumber = 500;
 			packageLineNumber = 10;
 		} else {
-			console.log("Unanimity only supports OS X.");
-			process.exit();
+			log("Unanimity only supports OS X.", 1);
 		}
 	}
 
 	fs.exists(discordPath, function (exists) {
 		if (exists) {
-			console.log("Discord folder found at " + discordPath + ".");
+			log("Discord folder found at " + discordPath + ".", 0);
 
 			var appPath = discordPath + "/node_modules/Unanimity";
 			var asarPath = discordPath + "/app.asar";
 			var extractedAsarPath = discordPath + "/app";
 
 			if (fs.existsSync(appPath)) {
-				console.log("Removing current version of Unanimity.");
+				log("Removing current version of Unanimity.", 0);
 				wrench.rmdirSyncRecursive(appPath);
-				console.log("Removed current version of Unanimity.");
+				log("Removed current version of Unanimity.", 0);
 			}
 
 			if (fs.existsSync(extractedAsarPath)) {
-				console.log("Removing old Discord Atom-Shell Archive.");
+				log("Removing old Discord Atom-Shell Archive.", 0);
 				wrench.rmdirSyncRecursive(extractedAsarPath);
-				console.log("Removed old Discord Atom-Shell Archive.");
+				log("Removed old Discord Atom-Shell Archive.", 0);
 			}
 
-			console.log("Installing Unanimity.");
-			wrench.copyDirSyncRecursive(__dirname + "/Unanimity/", appPath, {});
+			log("Installing Unanimity.", 0);
+			wrench.copyDirSyncRecursive(process.cwd() + "/Unanimity/", appPath, {});
 
 			if (fs.existsSync(asarPath)) {
-				console.log("Discord Atom-Shell Archive found at " + asarPath + ".");
+				log("Discord Atom-Shell Archive found at " + asarPath + ".", 0);
 			} else {
-				console.log("Discord Atom-Shell Archive not found at " + asarPath + ".");
-				process.exit();
+				log("Discord Atom-Shell Archive not found at " + asarPath + ".", 1);
 			}
 
-			console.log("Extracting Discord Atom-Shell Archive.");
+			log("Extracting Discord Atom-Shell Archive.", 0);
 			asar.extractAll(asarPath, extractedAsarPath);
 
 			fs.exists(extractedAsarPath, function (exists) {
 				if (exists) {
-					console.log("Discord Atom-Shell Archive extracted at " + extractedAsarPath + ".");
+					log("Discord Atom-Shell Archive extracted at " + extractedAsarPath + ".", 0);
 
-					console.log("Injecting index.js.");
+					log("Injecting index.js.", 0);
 
 					var data = fs.readFileSync(extractedAsarPath + appIndexPath).toString().split("\n");
 					data.splice(importLineNumber, 0, "var unanimity = require('unanimity');\n");
@@ -83,38 +101,35 @@ function install()
 
 					fs.writeFile(extractedAsarPath + appIndexPath, data.join("\n"), function(err) {
 						if (err) {
-							console.log("Something went wrong while injecting index.js.");
-							return console.log(err);
+							log("Something went wrong while injecting index.js.", 1);
+							return;
 						}
 
-						console.log("Injected index.js.");
-						console.log("Injecting package.json.");
+						log("Injected index.js.", 0);
+						log("Injecting package.json.", 0);
 
 						var data = fs.readFileSync(extractedAsarPath + appPackagePath).toString().split("\n");
 						data.splice(packageLineNumber, 0, '\t\t"unanimity": "^0.1.0",');
 
 						fs.writeFile(extractedAsarPath + appPackagePath, data.join("\n"), function(err) {
 							if (err) {
-								console.log("Something went wrong while injecting package.json.");
-								return console.log(err);
+								log("Something went wrong while injecting package.json.", 1);
+								return;
 							}
 
-							console.log("Injected package.json.");
+							log("Injected package.json.", 0);
 
-							console.log("Enjoy.");						
-							process.exit();
+							log("Enjoy.", 0);
+
+                            document.getElementById("exitButton").disabled = false;
 						});
 					});					
 				} else {
-					console.log("Could not extract Discord Atom-Shell Archive.");
-					process.exit();
+					log("Could not extract Discord Atom-Shell Archive.", 1);
 				}
 			});
 		} else {
-			console.log("Discord folder not found at " + discordPath + ".");
-			process.exit();
+			log("Discord folder not found at " + discordPath + ".", 1);
 		}
 	});
 }
-
-init();
