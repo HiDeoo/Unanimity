@@ -1,0 +1,368 @@
+/**
+ * Unanimity
+ */
+
+/*
+ * UI
+ */
+
+/* Channels */
+
+.un-ui .channels-wrap {
+    width: 210px;
+}
+
+.un-ui .guild-channels {
+	padding: 5px 0;
+}
+
+.un-ui .guild-channels h2 {
+	padding: 0 0 0 15px;
+}
+
+.un-ui .guild-channels header:first-child {
+	margin-right: 20px;
+}
+
+.un-ui .guild-channels ul .channel-text a {
+	padding: 7px 0 8px 15px;
+}
+
+.un-ui .guild-channels ul+header {
+	margin-top: 15px;
+}
+
+.un-ui .guild-channels ul .channel-voice {
+	padding: 8px 0 5px 15px;
+}
+
+.un-ui .guild-channels ul .channel-voice-states {
+	margin-top: 8px;
+	padding-left: 20px;
+}
+
+/* Channel members */
+
+.un-ui .channel-members-wrap {
+	width: 200px;
+	min-width: 200px;
+}
+
+.un-ui .channel-members {
+	padding: 7px 0;
+}
+
+.un-ui .channel-members h2 {
+	padding: 0 15px;
+	font-size: 11px;
+}
+
+.un-ui .channel-members .member {
+	padding: 5px 16px 5px 15px;	
+}
+
+.un-ui .channel-members .member + h2 {
+	margin-top: 15px;
+}
+
+.un-ui .channel-members .member .member-username {
+	font-size: 15px;
+}
+
+/* Chat */
+
+.un-ui .chat form {
+	margin: 0 10px;
+}
+
+.un-ui .channel-textarea {
+	margin: 10px 0 30px 0;
+}
+
+.un-ui .message-group {
+	margin-left: 6px;
+}
+
+.un-ui .message-group .comment {
+	margin-right: 0;
+}
+
+.un-ui .embed .embed-provider {
+	display: none;
+}
+
+.un-ui .embed .embed-author {
+	display: none;
+}
+
+.un-ui .embed .embed-title {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.un-ui .message-group.compact .message .markup {
+	text-indent: -85px;
+}
+
+.un-ui .message-group .comment .markup pre {
+	max-width: 100%;
+	margin-top: 5px;
+	margin-left: -15px;
+}
+
+.un-ui code {
+	font-size: 12px;
+}
+
+.un-ui .message-group.compact .accessory {
+	padding-left: 75px;
+}
+
+.un-ui .message-group .mentioned .message-text:after {
+	left: 0;
+}
+
+.message-group .mentioned .message-text:after {
+	width: 0;
+}
+
+/*
+ * Mute
+ */
+
+#un-muteAllText {
+	width: 16px;
+	height: 16px;
+	background: url("https://discordapp.com/assets/66cd452345ef15f6521d35f3fa877ef2.svg") center center no-repeat;
+	margin-left: 9px;
+	float: right;
+	opacity: .3;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    cursor: pointer;
+}
+
+#un-muteAllText:hover {
+	opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+
+/*
+ * Search
+ */
+
+/* Search button */
+
+#un-search {
+	width: 16px;
+	height: 16px;
+	background: url("https://discordapp.com/assets/8c28d217cc33159474a64e24a2072c52.svg") center center no-repeat;
+	opacity: .5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	cursor: pointer;
+	margin-left: 4px;
+	margin-top: 2px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.theme-dark #un-search {
+	margin-top: -2px;
+	background: url("https://discordapp.com/assets/181143c7c10c902dc9183f39d1198d11.svg") center center no-repeat;
+	opacity: .2;
+}
+
+#un-search:hover {
+	opacity: 1;
+	-ms-filter: none;
+	filter: none;
+}
+
+/* Searchbar */
+
+#un-searchBar {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	min-height: 40px;
+	max-height: 40px;
+	height: 40px;
+	background-color: #282B30;
+	border-bottom: 1px #282b30 solid;
+}
+
+#un-searchBarInput {
+	border-radius: 2px;
+	border: 1px solid #dadddf;
+	margin: 6px;
+	padding: 0 6px;
+	width: 200px;
+	color: #747f8d;
+	font-size: 13px;
+	font-family: Whitney, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+#un-searchBarInput::-webkit-input-placeholder {
+	color: #67696d;
+}
+
+.theme-dark #un-searchBarInput {
+	border-color: rgba(255,255,255,.2);
+	background-color: rgba(255,255,255,.06);
+	color: rgba(255,255,255,.7);
+}
+
+#un-searchBarInput:focus {
+	outline: 0;
+}
+
+#un-searchBar .checkbox {
+	margin: 0 2px 0 6px;
+}
+
+#un-searchBar .checkbox .checkbox-inner + span {
+	color: #99aab5;
+	font-size: 13px;
+}
+
+.theme-dark #un-searchBar .checkbox .checkbox-inner + span {
+	color: #fff;
+	opacity: .3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+}
+
+#un-searchBar .checkbox .checkbox-inner span {
+	border: 2px solid #99aab5;
+}
+
+.theme-dark #un-searchBar .checkbox .checkbox-inner span {
+	border: 2px solid #64666A;
+}
+
+#un-searchBar .checkbox .checkbox-inner input[type="checkbox"]:checked + span {
+	border-color: #A4A8B5;
+	background-color: #A4A8B5;
+}
+
+#un-searchBar .checkbox .checkbox-inner {
+	width: 14px;
+	height: 14px;
+}
+
+#un-searchBar .checkbox .checkbox-inner input[type="checkbox"]:checked + span:after {
+	top: -1px;
+	left: 2px;
+	width: 4px;
+	height: 8px;
+}
+
+#un-searchBarClose {
+	width: 10px;
+	height: 10px;
+	background: url("https://discordapp.com/assets/ce644eedd018cb94b7b1ce34aabdcc36.svg") center center no-repeat;
+	opacity: .3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	cursor: pointer;
+	margin: 15px 2px 0 9px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#un-searchBarInfos {
+	margin: 13px 11px 0 auto;
+}
+
+#un-searchBarMatches {
+	color: #99aab5;
+	font-size: 13px;
+	margin: 0 11px;
+	display: none;
+	cursor:default;
+	vertical-align: top;
+}
+
+.theme-dark #un-searchBarMatches {
+	color: #fff;
+	opacity: .3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+}
+
+#un-searchBarPrevious, #un-searchBarNext {
+	width: 16px;
+	height: 16px;
+	background: url("https://discordapp.com/assets/6ae194d3411ceac6502d081d5bcd2163.svg") center center no-repeat;
+	background-size: 10px 12px;
+	opacity: .3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	cursor: pointer;
+	margin-top: -1px;
+	display: none;
+}
+
+#un-searchBarPrevious {
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+#un-searchBarNext{
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+/* Results */
+
+.chat > .content .messages .message-text.un-searchHighlight {
+	position: relative;
+	background: rgba(250, 242, 26, .4);
+	-webkit-border-radius: 0 2px 2px 0;
+	border-radius: 0 2px 2px 0;
+}
+
+.theme-dark .chat > .content .messages .message-text.un-searchHighlight {
+	background: rgba(250, 242, 26, .1);
+}
+
+.chat > .content .messages .message-text.un-searchHighlight:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	content: ' ';
+	background: rgba(250, 242, 26, .2);
+	border-left: 4px solid #e8db0f;
+	-webkit-border-radius: 2px 0 0 2px;
+	border-radius: 2px 0 0 2px;
+}
+
+.theme-dark .chat > .content .messages .message-text.un-searchHighlight:after {
+	border-left: 4px solid #faed1a;
+}
+
+.chat > .content .messages .message-text.un-searchCurrent:after {
+	border-left: 4px solid #7289d9;
+}
+
+.theme-dark .chat > .content .messages .message-text.un-searchCurrent:after {
+	border-left: 4px solid #7289d9;
+}
