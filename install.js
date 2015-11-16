@@ -15,6 +15,7 @@ var packageLineNumber;
 
 var appIndexPath = "/app/index.js";
 var appPackagePath = "/app/package.json";
+var discordVersion = "0.0.280";
 
 function exit()
 {
@@ -71,7 +72,14 @@ function install()
 			functionLineNumber = 602;
 			functionCallLineNumber = 500;
 			packageLineNumber = 10;
-		} else {
+		} else if (os == "win32") {
+            //noinspection JSUnresolvedVariable
+            discordPath = process.env.LOCALAPPDATA + "/Discord/app-" + discordVersion + "/resources";
+            importLineNumber = 84;
+            functionLineNumber = 597;
+            functionCallLineNumber = 497;
+            packageLineNumber = 10;
+        } else {
 			log("Unanimity only supports OS X.", 1);
 		}
 	}
