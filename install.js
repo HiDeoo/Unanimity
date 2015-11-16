@@ -27,20 +27,40 @@ function exit()
  */
 function log(message, type)
 {
-    document.getElementById("logs").innerHTML = message;
+    if (typeof document == "undefined") {
+        var typeString;
 
-    if (type == 0) {
-        document.getElementById("logs").className = "message";
-    } else if (type == 1) {
-        document.getElementById("logs").className = "error";
-        document.getElementById("exitButton").disabled = false;
+        switch (type) {
+            case 0:
+                typeString = "";
+                break;
+            case 1:
+                typeString = "Error: ";
+                break;
+            default:
+                typeString = "";
+                break;
+        }
+
+        console.log(typeString + message);
+    } else {
+        document.getElementById("logs").innerHTML = message;
+
+        if (type == 0) {
+            document.getElementById("logs").className = "message";
+        } else if (type == 1) {
+            document.getElementById("logs").className = "error";
+            document.getElementById("exitButton").disabled = false;
+        }
     }
 }
 
 function install()
 {
-    document.getElementById("installButton").disabled = true;
-    document.getElementById("exitButton").disabled = true;
+    if (typeof document != "undefined") {
+        document.getElementById("installButton").disabled = true;
+        document.getElementById("exitButton").disabled = true;
+    }
 
     if (typeof discordPath == "undefined") {
 		var os = process.platform;
@@ -121,7 +141,9 @@ function install()
 
 							log("Enjoy.", 0);
 
-                            document.getElementById("exitButton").disabled = false;
+                            if (typeof document != "undefined") {
+                                document.getElementById("exitButton").disabled = false;
+                            }
 						});
 					});					
 				} else {
@@ -132,4 +154,14 @@ function install()
 			log("Discord folder not found at " + discordPath + ".", 1);
 		}
 	});
+}
+
+if (typeof document == "undefined") {
+    var argument = process.argv.slice(2);
+
+    if (argument == "install") {
+        install();
+    } else {
+        log("Usage: node install.js {install}.")
+    }
 }
