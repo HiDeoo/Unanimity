@@ -44,9 +44,10 @@ $(document).bind("keydown", "ctrl+f", function () {
 
 ## Planned features
 
-* Unanimity update mechanism (notification).
+* ~~Unanimity update mechanism (notification).~~
 * Plugins hosting directly on Github instead of a private server.
 * Settings panel to select which features are enabled or not.
+* Remove / hide messages.
 
 ## Copyright and license
 
