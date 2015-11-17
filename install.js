@@ -76,7 +76,7 @@ function install()
     }
 
     if (typeof discordPath == "undefined") {
-		var os = process.platform;
+        var os = process.platform;
 
         if (os == "darwin") {
             discordPath = "/Applications/Discord.app/Contents/Resources";
