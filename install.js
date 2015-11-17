@@ -78,13 +78,13 @@ function install()
     if (typeof discordPath == "undefined") {
 		var os = process.platform;
 
-		if (os == "darwin") {
-			discordPath = "/Applications/Discord.app/Contents/Resources";
-			importLineNumber = 84;
-			functionLineNumber = 602;
-			functionCallLineNumber = 500;
-			packageLineNumber = 10;
-		} else if (os == "win32") {
+        if (os == "darwin") {
+            discordPath = "/Applications/Discord.app/Contents/Resources";
+            importLineNumber = 84;
+            functionLineNumber = 602;
+            functionCallLineNumber = 500;
+            packageLineNumber = 10;
+        } else if (os == "win32") {
             //noinspection JSUnresolvedVariable
             discordPath = process.env.LOCALAPPDATA + "/Discord/app-" + discordVersion + "/resources";
             importLineNumber = 84;
@@ -92,9 +92,9 @@ function install()
             functionCallLineNumber = 497;
             packageLineNumber = 10;
         } else {
-			log("Unanimity only supports OS X and Windows.", 1);
-		}
-	}
+            log("Unanimity only supports OS X and Windows.", 1);
+        }
+    }
 
 	fs.exists(discordPath, function (exists) {
 		if (exists) {
