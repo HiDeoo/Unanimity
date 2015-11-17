@@ -46,6 +46,7 @@ function log(message, type)
 
         console.log(typeString + message);
     } else {
+        document.getElementsByTagName("progress")[0].style.visibility = "visible";
         document.getElementById("logs").innerHTML = message;
 
         if (type == 0) {
@@ -54,6 +55,13 @@ function log(message, type)
             document.getElementById("logs").className = "error";
             document.getElementById("exitButton").disabled = false;
         }
+    }
+}
+
+function setProgress(progress)
+{
+    if (typeof document != "undefined") {
+        document.getElementsByTagName("progress")[0].value = progress;
     }
 }
 
@@ -81,9 +89,11 @@ function install()
             functionCallLineNumber = 497;
             packageLineNumber = 10;
         } else {
-			log("Unanimity only supports OS X.", 1);
+			log("Unanimity only supports OS X and Windows.", 1);
 		}
 	}
+
+    setProgress(10);
 
 	fs.exists(discordPath, function (exists) {
 		if (exists) {
@@ -93,11 +103,15 @@ function install()
 			var asarPath = discordPath + "/app.asar";
 			var extractedAsarPath = discordPath + "/app";
 
+            setProgress(20);
+
 			if (fs.existsSync(appPath)) {
 				log("Removing current version of Unanimity.", 0);
 				wrench.rmdirSyncRecursive(appPath);
 				log("Removed current version of Unanimity.", 0);
 			}
+
+            setProgress(30);
 
 			if (fs.existsSync(extractedAsarPath)) {
 				log("Removing old Discord Atom-Shell Archive.", 0);
@@ -105,8 +119,12 @@ function install()
 				log("Removed old Discord Atom-Shell Archive.", 0);
 			}
 
+            setProgress(40);
+
 			log("Installing Unanimity.", 0);
 			wrench.copyDirSyncRecursive(process.cwd() + "/Unanimity/", appPath, {});
+
+            setProgress(50);
 
 			if (fs.existsSync(asarPath)) {
 				log("Discord Atom-Shell Archive found at " + asarPath + ".", 0);
@@ -114,14 +132,20 @@ function install()
 				log("Discord Atom-Shell Archive not found at " + asarPath + ".", 1);
 			}
 
+            setProgress(60);
+
 			log("Extracting Discord Atom-Shell Archive.", 0);
 			asar.extractAll(asarPath, extractedAsarPath);
+
+            setProgress(70);
 
 			fs.exists(extractedAsarPath, function (exists) {
 				if (exists) {
 					log("Discord Atom-Shell Archive extracted at " + extractedAsarPath + ".", 0);
 
 					log("Injecting index.js.", 0);
+
+                    setProgress(80);
 
 					var data = fs.readFileSync(extractedAsarPath + appIndexPath).toString().split("\n");
 					data.splice(importLineNumber, 0, "var unanimity = require('unanimity');\n");
@@ -137,6 +161,8 @@ function install()
 						log("Injected index.js.", 0);
 						log("Injecting package.json.", 0);
 
+                        setProgress(90);
+
 						var data = fs.readFileSync(extractedAsarPath + appPackagePath).toString().split("\n");
 						data.splice(packageLineNumber, 0, '\t\t"unanimity": "",');
 
@@ -149,6 +175,8 @@ function install()
 							log("Injected package.json.", 0);
 
 							log("Enjoy.", 0);
+
+                            setProgress(100);
 
                             if (typeof document != "undefined") {
                                 document.getElementById("exitButton").disabled = false;

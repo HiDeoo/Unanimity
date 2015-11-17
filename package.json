@@ -28,7 +28,7 @@
     "icon": "icon.png",
     "toolbar": false,
     "width": 500,
-    "height": 240,
+    "height": 200,
     "position": "center",
     "resizable": false
   }
