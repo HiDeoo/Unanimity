@@ -6,7 +6,7 @@ var fs = require("fs");
 var process = require("process");
 var wrench = require("wrench");
 var asar = require("asar");
-var package = require("./package.json")
+var package = require("./package.json");
 
 var discordPath;
 var importLineNumber;

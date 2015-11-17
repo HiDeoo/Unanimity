@@ -4,6 +4,7 @@
 
 var discord = require("./discord");
 var ipc = require("ipc");
+var package = require("../package.json");
 
 var window;
 var unanimityUrl = "https://verre2vin.info/unanimity/assets";
@@ -23,6 +24,19 @@ Unanimity.prototype.start = function () {
 	var self = this;
 
 	discord.getWebContents().on("dom-ready",  function () {
+        discord.download("https://raw.githubusercontent.com/HiDeoo/Unanimity/master/package.json", function (data, res) {
+            var packageJson = JSON.parse(data);
+
+            if (res.statusCode == 200) {
+                var latest = packageJson.version;
+
+                if (package.version < latest) {
+                    discord.js('alert("A new version of Uninamity is available.\\nCurrent version: ' + package.version + '\\nNew version: ' + latest + '");');
+                    discord.js('window.open("https://github.com/HiDeoo/Unanimity/releases", "_blank");');
+                }
+            }
+        });
+
 		discord.js('var loadingElement = document.createElement("div");');
         discord.js('loadingElement.innerHTML = \'<style>#un-loadingBar { margin-left: 10px; -webkit-appearance: none; height: 7px; border-radius: 3px; vertical-align: 1px; } #un-loadingBar::-webkit-progress-bar { background-color: #1e2124; border-radius: 3px; } #un-loadingBar::-webkit-progress-value { background-color: #616365; border-radius: 3px; }</style><div style="width: 100%; height: 30px; background-color: #2f3136; border-top: 1px solid #16181a; color: #696b6e; font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; line-height: 30px;" id="un-loadingWrapper"><div style="padding-right: 15px; float: right;"><span id="un-loadingMessage">STARTING UP UNANIMITY</span> <progress id="un-loadingBar" value="50" max="100"></progress></div></div>\'');
         discord.js('var app = document.getElementsByClassName("flex-vertical flex-spacer")[0]; app.appendChild(loadingElement);');
