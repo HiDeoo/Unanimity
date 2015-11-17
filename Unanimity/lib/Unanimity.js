@@ -4,7 +4,7 @@
 
 var discord = require("./discord");
 var ipc = require("ipc");
-var package = require("../package.json");
+var localPackage = require("../package.json");
 
 var window;
 var unanimityUrl = "https://verre2vin.info/unanimity/assets";
@@ -25,13 +25,13 @@ Unanimity.prototype.start = function () {
 
 	discord.getWebContents().on("dom-ready",  function () {
         discord.download("https://raw.githubusercontent.com/HiDeoo/Unanimity/master/package.json", function (data, res) {
-            var packageJson = JSON.parse(data);
+            var remotePackage = JSON.parse(data);
 
             if (res.statusCode == 200) {
-                var latest = packageJson.version;
+                var latest = remotePackage.version;
 
-                if (package.version < latest) {
-                    discord.js('alert("A new version of Uninamity is available.\\nCurrent version: ' + package.version + '\\nNew version: ' + latest + '");');
+                if (localPackage.version < latest) {
+                    discord.js('alert("A new version of Uninamity is available.\\nCurrent version: ' + localPackage.version + '\\nNew version: ' + latest + '");');
                     discord.js('window.open("https://github.com/HiDeoo/Unanimity/releases", "_blank");');
                 }
             }

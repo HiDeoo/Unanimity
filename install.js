@@ -6,7 +6,7 @@ var fs = require("fs");
 var process = require("process");
 var wrench = require("wrench");
 var asar = require("asar");
-var package = require("./package.json");
+var localPackage = require("./package.json");
 
 var discordPath;
 var importLineNumber;
@@ -203,5 +203,5 @@ if (typeof document == "undefined") {
         log("Usage: node install.js {install}.")
     }
 } else {
-    document.getElementById("title").innerHTML = "Unanimity " + package.version;
+    document.getElementById("title").innerHTML = "Unanimity " + localPackage.version;
 }
