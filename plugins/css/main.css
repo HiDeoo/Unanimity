@@ -9,7 +9,7 @@
 /* Channels */
 
 .un-ui .channels-wrap {
-    width: 210px;
+	width: 210px;
 }
 
 .un-ui .guild-channels {
@@ -28,7 +28,7 @@
 	padding: 7px 0 8px 15px;
 }
 
-.un-ui .guild-channels ul+header {
+.un-ui .guild-channels ul + header {
 	margin-top: 15px;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .un-ui .channel-members .member {
-	padding: 5px 16px 5px 15px;	
+	padding: 5px 16px 5px 15px;
 }
 
 .un-ui .channel-members .member + h2 {
@@ -138,15 +138,15 @@
 	margin-left: 9px;
 	float: right;
 	opacity: .3;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-    filter: alpha(opacity=30);
-    cursor: pointer;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	cursor: pointer;
 }
 
 #un-muteAllText:hover {
 	opacity: 1;
-    -ms-filter: none;
-    filter: none;
+	-ms-filter: none;
+	filter: none;
 }
 
 /*
@@ -196,7 +196,7 @@
 	min-height: 40px;
 	max-height: 40px;
 	height: 40px;
-	background-color: #282B30;
+	background-color: #282b30;
 	border-bottom: 1px #282b30 solid;
 }
 
@@ -216,9 +216,9 @@
 }
 
 .theme-dark #un-searchBarInput {
-	border-color: rgba(255,255,255,.2);
-	background-color: rgba(255,255,255,.06);
-	color: rgba(255,255,255,.7);
+	border-color: rgba(255, 255, 255, .2);
+	background-color: rgba(255, 255, 255, .06);
+	color: rgba(255, 255, 255, .7);
 }
 
 #un-searchBarInput:focus {
@@ -235,7 +235,7 @@
 }
 
 .theme-dark #un-searchBar .checkbox .checkbox-inner + span {
-	color: #fff;
+	color: #ffffff;
 	opacity: .3;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 	filter: alpha(opacity=30);
@@ -246,12 +246,12 @@
 }
 
 .theme-dark #un-searchBar .checkbox .checkbox-inner span {
-	border: 2px solid #64666A;
+	border: 2px solid #64666a;
 }
 
 #un-searchBar .checkbox .checkbox-inner input[type="checkbox"]:checked + span {
-	border-color: #A4A8B5;
-	background-color: #A4A8B5;
+	border-color: #a4a8b5;
+	background-color: #a4a8b5;
 }
 
 #un-searchBar .checkbox .checkbox-inner {
@@ -291,12 +291,12 @@
 	font-size: 13px;
 	margin: 0 11px;
 	display: none;
-	cursor:default;
+	cursor: default;
 	vertical-align: top;
 }
 
 .theme-dark #un-searchBarMatches {
-	color: #fff;
+	color: #ffffff;
 	opacity: .3;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 	filter: alpha(opacity=30);
@@ -323,7 +323,7 @@
 	transform: rotate(-90deg);
 }
 
-#un-searchBarNext{
+#un-searchBarNext {
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-o-transform: rotate(90deg);

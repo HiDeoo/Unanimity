@@ -2,14 +2,17 @@
   "name": "Unanimity",
   "version": "0.2.0",
   "description": "Unanimity add features to Discord.",
-  "keywords": [ "Unanimity", "Discord" ],
+  "keywords": [
+    "Unanimity",
+    "Discord"
+  ],
   "homepage": "https://github.com/HiDeoo/Unanimity",
   "bugs": {
     "url": "https://github.com/HiDeoo/Unanimity/issues"
   },
   "license": "MIT",
   "author": "HiDeoo",
-  "contributors": [  ],
+  "contributors": [],
   "main": "index.html",
   "repository": {
     "type": "git",
@@ -20,7 +23,7 @@
     "asar": "0.8.x"
   },
   "engines": {
-    "node" : "*"
+    "node": "*"
   },
   "private": true,
   "window": {

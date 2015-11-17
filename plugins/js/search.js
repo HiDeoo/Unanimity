@@ -4,12 +4,13 @@
 
 var searchPlugin;
 
-function SearchPlugin () { }
+function SearchPlugin() {
+}
 
 SearchPlugin.prototype.init = function () {
     var self = this;
 
-    var searchButton = $("<span/>", { id: "un-search" });
+    var searchButton = $("<span/>", {id: "un-search"});
 
     $(".chat.flex-vertical.flex-spacer .title").append(searchButton);
 
@@ -17,7 +18,7 @@ SearchPlugin.prototype.init = function () {
         self.toggle();
     });
 
-    $(document).on("click", "#un-searchBarClose", function() {
+    $(document).on("click", "#un-searchBarClose", function () {
         $("#un-searchBar").remove();
         self.hideResults();
     });
@@ -100,9 +101,11 @@ SearchPlugin.prototype.search = function () {
     } else {
         searchType = "iContains";
 
-        $.extend($.expr[":"], { "iContains": function(element, i, match) {
-            return (element.textContent || element.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-        }});
+        $.extend($.expr[":"], {
+            "iContains": function (element, i, match) {
+                return (element.textContent || element.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
     }
 
     var results = $("div.markup:" + searchType + "('" + term + "')");
@@ -110,7 +113,7 @@ SearchPlugin.prototype.search = function () {
     this.setMatches(results.length);
     this.showControls(true);
 
-    results.each(function(i, element) {
+    results.each(function (i, element) {
         $(element).closest(".message-text").addClass("un-searchHighlight");
     });
 
@@ -163,14 +166,14 @@ SearchPlugin.prototype.toggle = function () {
         return;
     }
 
-    searchBar = $("<div/>", { id: "un-searchBar" });
-    searchBar.html($("<div/>", { id: "un-searchBarClose" }));
-    searchBar.append($("<input/>", { id: "un-searchBarInput", type: "text", placeholder: "Search" }));
+    searchBar = $("<div/>", {id: "un-searchBar"});
+    searchBar.html($("<div/>", {id: "un-searchBarClose"}));
+    searchBar.append($("<input/>", {id: "un-searchBarInput", type: "text", placeholder: "Search"}));
 
-    var checkbox = $("<input/>", { id: "un-searchBarMatchCase", type: "checkbox" });
-    checkbox = $("<div/>", { class: "checkbox-inner" }).html(checkbox);
+    var checkbox = $("<input/>", {id: "un-searchBarMatchCase", type: "checkbox"});
+    checkbox = $("<div/>", {class: "checkbox-inner"}).html(checkbox);
     checkbox.append($("<span/>"));
-    checkbox = $("<div/>", { class: "checkbox" }).html(checkbox);
+    checkbox = $("<div/>", {class: "checkbox"}).html(checkbox);
     checkbox.append($("<span/>").html("Match Case"));
     searchBar.append(checkbox);
 
@@ -183,14 +186,14 @@ SearchPlugin.prototype.toggle = function () {
      searchBar.append(checkbox);
      */
 
-    var searchBarInfos = $("<div/>", { id: "un-searchBarInfos" });
+    var searchBarInfos = $("<div/>", {id: "un-searchBarInfos"});
 
-    var matches = $("<div/>", { id: "un-searchBarMatches" });
+    var matches = $("<div/>", {id: "un-searchBarMatches"});
     searchBarInfos.append(matches);
 
-    var previous = $("<div/>", { id: "un-searchBarPrevious" });
+    var previous = $("<div/>", {id: "un-searchBarPrevious"});
     searchBarInfos.append(previous);
-    var next= $("<div/>", { id: "un-searchBarNext" });
+    var next = $("<div/>", {id: "un-searchBarNext"});
     searchBarInfos.append(next);
 
     searchBar.append(searchBarInfos);

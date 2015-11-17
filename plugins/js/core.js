@@ -7,27 +7,28 @@ var observer;
 var mutePlugin;
 var searchPlugin;
 
-function Core () {}
+function Core() {
+}
 
 Core.prototype.init = function () {
-	mutePlugin = new MutePlugin();
+    mutePlugin = new MutePlugin();
     searchPlugin = new SearchPlugin();
 
-	this.initObserver();
+    this.initObserver();
 };
 
 Core.prototype.initObserver = function () {
-	observer = new MutationObserver(function (mutations) {
-		mutations.forEach(function(mutation) {
-			if(mutation.target.getAttribute("class") && mutation.target.getAttribute("class")  != '' && mutation.target.getAttribute("class").indexOf("titlebar") != -1) {
-				mutePlugin.didMutate();
+    observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.target.getAttribute("class") && mutation.target.getAttribute("class") != '' && mutation.target.getAttribute("class").indexOf("titlebar") != -1) {
+                mutePlugin.didMutate();
                 searchPlugin.didMutate();
-			}
-		});
-	});
+            }
+        });
+    });
 
-    var config = { childList: true, subtree: true };
+    var config = {childList: true, subtree: true};
 
-	//noinspection JSCheckFunctionSignatures
+    //noinspection JSCheckFunctionSignatures
     observer.observe(document, config);
 };
