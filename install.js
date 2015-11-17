@@ -46,7 +46,6 @@ function log(message, type)
 
         console.log(typeString + message);
     } else {
-        document.getElementsByTagName("progress")[0].style.visibility = "visible";
         document.getElementById("logs").innerHTML = message;
 
         if (type == 0) {
@@ -61,12 +60,16 @@ function log(message, type)
 function setProgress(progress)
 {
     if (typeof document != "undefined") {
+        document.getElementsByTagName("progress")[0].style.visibility = "visible";
         document.getElementsByTagName("progress")[0].value = progress;
     }
 }
 
 function install()
 {
+    setProgress(10);
+    log("Starting installation...");
+
     if (typeof document != "undefined") {
         document.getElementById("installButton").disabled = true;
         document.getElementById("exitButton").disabled = true;
@@ -92,8 +95,6 @@ function install()
 			log("Unanimity only supports OS X and Windows.", 1);
 		}
 	}
-
-    setProgress(10);
 
 	fs.exists(discordPath, function (exists) {
 		if (exists) {
