@@ -13,7 +13,7 @@ You can download the lastest version of our basic installer (using [NW.js](https
 
 Unanimity is a basic Node module with only one goal: inject remote files (Javascript or CSS) in Discord at each launch.
 
-Unanimity plugins are Javascript files which will be injected remotely (using https) in Discord during startup. JQuery 2.0.3 is automatically injected (first injection) and available right after.
+Unanimity plugins are Javascript files which will be injected remotely (from GitHub using https) in Discord during startup. JQuery 2.0.3 is automatically injected (first injection) and available right after.
 
 Plugins files are located in the `plugins/js` folder. Additionally, CSS rules are loaded from `plugins/css/main.css`.
 
@@ -45,7 +45,7 @@ $(document).bind("keydown", "ctrl+f", function () {
 ## Planned features
 
 * ~~Unanimity update mechanism (notification).~~
-* Plugins hosting directly on Github instead of a private server.
+* ~~Plugins hosting directly on Github instead of a private server.~~
 * Settings panel to select which features are enabled or not.
 * Remove / hide messages.
 
