@@ -137,7 +137,7 @@ function install()
 						log("Injecting package.json.", 0);
 
 						var data = fs.readFileSync(extractedAsarPath + appPackagePath).toString().split("\n");
-						data.splice(packageLineNumber, 0, '\t\t"unanimity": "^0.1.0",');
+						data.splice(packageLineNumber, 0, '\t\t"unanimity": "",');
 
 						fs.writeFile(extractedAsarPath + appPackagePath, data.join("\n"), function(err) {
 							if (err) {
