@@ -4,7 +4,7 @@ Unanimity add [features](#features) to Discord.
 
 ## Installation
 
-You can download the lastest version of our basic installer (using [NW.js](https://github.com/nwjs/nw.js)) on the [releases page](https://github.com/HiDeoo/Unanimity/releases).
+You can download the latest version of our basic installer (using [NW.js](https://github.com/nwjs/nw.js)) on the [releases page](https://github.com/HiDeoo/Unanimity/releases).
 
 * *OS X: Exit Discord, extract and launch Unanimity.app.*
 * *Windows: Exit Discord, extract and launch Unanimity.exe.*
