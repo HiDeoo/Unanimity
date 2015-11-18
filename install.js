@@ -84,7 +84,7 @@ function install() {
             //noinspection JSUnresolvedVariable
             discordPath = process.env.LOCALAPPDATA + "/Discord/app-" + discordVersion + "/resources";
             importLineNumber = 84;
-            functionLineNumber = 597;
+            functionLineNumber = 601;
             functionCallLineNumber = 497;
             packageLineNumber = 10;
         } else {
