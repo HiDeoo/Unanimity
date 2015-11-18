@@ -12,7 +12,9 @@ MutePlugin.prototype.init = function () {
 
     $(".guild-channels header button").first().parent().parent().before(muteButton);
 
-    $("#un-muteAllText").on("click", function () {
+    muteButton = $("#un-muteAllText");
+
+    muteButton.on("click", function () {
         var selectedIndex = $(".guild-channels li.channel-text.selected").index();
 
         var channels = $(".guild-channels li.channel-text");
@@ -23,6 +25,17 @@ MutePlugin.prototype.init = function () {
         });
 
         channels.eq(selectedIndex).find("span").trigger("click");
+    });
+
+    muteButton.hover(function () {
+        var tooltip = $("<div/>", {class: "tooltip tooltip-top tooltip-normal"});
+        tooltip.css('top', $(this).offset().top - 21 + 'px');
+        tooltip.css('left', $(this).offset().left - 61 + 'px');
+        tooltip.html("Mute All Text Channels");
+
+        $(".tooltips").html(tooltip);
+    }, function () {
+        $(".tooltips").empty();
     });
 };
 

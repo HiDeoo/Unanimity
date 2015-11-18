@@ -14,8 +14,21 @@ SearchPlugin.prototype.init = function () {
 
     $(".chat.flex-vertical.flex-spacer .title").append(searchButton);
 
-    $("#un-search").on("click", function () {
+    searchButton = $("#un-search");
+
+    searchButton.on("click", function () {
         self.toggle();
+    });
+
+    searchButton.hover(function () {
+        var tooltip = $("<div/>", {class: "tooltip tooltip-bottom tooltip-normal"});
+        tooltip.css('top', $(this).offset().top + 16 + 'px');
+        tooltip.css('left', $(this).offset().left - 73 + 'px');
+        tooltip.html("Search text in the current channel (only works on loaded content).");
+
+        $(".tooltips").html(tooltip);
+    }, function () {
+        $(".tooltips").empty();
     });
 
     $(document).on("click", "#un-searchBarClose", function () {
