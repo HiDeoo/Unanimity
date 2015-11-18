@@ -16,7 +16,7 @@ var packageLineNumber;
 
 var appIndexPath = "/app/index.js";
 var appPackagePath = "/app/package.json";
-var discordVersion = "0.0.280";
+var discordVersion = "0.0.283";
 
 function exit() {
     process.exit();
