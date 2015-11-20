@@ -38,6 +38,7 @@ $(document).bind("keydown", "ctrl+f", function () {
 
 ## Features
 
+* Modulable plugins architecture (settings panel to enable or disable plugins).
 * Interface overhaul.
 * Search (local only, no API at this time) with keyboard support *(cmd+f, ctrl+f, cmd+g, ctrl+g, cmd+shift+g, ctrl+shift+g, enter, shift+enter)*.
 * Mute / unmute all text channels button.
@@ -46,7 +47,7 @@ $(document).bind("keydown", "ctrl+f", function () {
 
 * ~~Unanimity update mechanism (notification).~~
 * ~~Plugins hosting directly on Github instead of a private server.~~
-* Settings panel to select which features are enabled or not.
+* ~~Settings panel to select which features are enabled or not.~~
 * Remove / hide messages.
 
 ## Copyright and license
