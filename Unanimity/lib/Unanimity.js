@@ -58,39 +58,90 @@ Unanimity.prototype.start = function () {
 
         discord.js('var unanimityIPC = require("ipc");');
 
-        ipc.on("asynchronous-message", function (event, arg) {
+        ipc.on("un-ipc-injection", function (event, arg) {
             switch (arg) {
+                /*
+                 * Injected mandatory jQuery.
+                 * Injecting mandatory Core.
+                 */
                 case "un-injected-jquery":
                     self.updateLoader("UNANIMITY - INJECTING CORE", 30);
                     discord.injectJS(unanimityUrl + "/js/core.js", "un-injected-core");
                     break;
+                /*
+                 * Injected mandatory Core.
+                 * Injecting mandatory jQuery Hotkeys.
+                 */
                 case "un-injected-core":
+                    discord.js('var core = new Core();');
+
                     self.updateLoader("UNANIMITY - INJECTING KEYBOARD SHORTCUTS", 40);
                     discord.injectJS("https://cdn.rawgit.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js", "un-injected-keyboard");
                     break;
+                /*
+                 * Injected mandatory jQuery Hotkeys.
+                 * Checking if injecting optional UI plugin.
+                 */
                 case "un-injected-keyboard":
+                    discord.js('core.ipcGetSetting("unPluginUIEnabled");');
+                    break;
+                /*
+                 * Injecting optional UI plugin.
+                 */
+                case "un-injecting-ui":
                     self.updateLoader("UNANIMITY - INJECTING UI PLUGIN", 50);
                     discord.injectJS(unanimityUrl + "/js/ui.js", "un-injected-ui");
                     break;
+                /*
+                 * Injected or skipped optional UI plugin.
+                 * Checking if injecting optional Search plugin.
+                 */
                 case "un-injected-ui":
+                    discord.js('core.ipcGetSetting("unPluginSearchEnabled");');
+                    break;
+                /*
+                 * Injecting optional Search plugin.
+                 */
+                case "un-injecting-search":
                     self.updateLoader("UNANIMITY - INJECTING SEARCH PLUGIN", 60);
                     discord.injectJS(unanimityUrl + "/js/search.js", "un-injected-search");
                     break;
+                /*
+                 * Injected or skipped optional Search plugin.
+                 * Checking if injecting optional Mute plugin.
+                 */
                 case "un-injected-search":
+                    discord.js('core.ipcGetSetting("unPluginMuteEnabled");');
+                    break;
+                /*
+                 * Injecting optional Mute plugin.
+                 */
+                case "un-injecting-mute":
                     self.updateLoader("UNANIMITY - INJECTING MUTE PLUGIN", 70);
                     discord.injectJS(unanimityUrl + "/js/mute.js", "un-injected-mute");
                     break;
+                /*
+                 * Injected or skipped optional Mute plugin.
+                 * Injecting mandatory stylesheet.
+                 */
                 case "un-injected-mute":
                     self.updateLoader("UNANIMITY - INJECTING CSS", 80);
                     discord.injectCSS(unanimityUrl + "/css/main.css", "un-injected-css");
                     break;
+                /*
+                 * Injected mandatory stylesheet.
+                 * Injections are done, starting up.
+                 */
                 case "un-injected-css":
-                    discord.sendNotification("un-starting");
+                    discord.sendNotification("un-ipc-injection", "un-starting");
                     break;
+                /*
+                 * Let's go.
+                 */
                 case "un-starting":
                     self.updateLoader("UNANIMITY - BREWING COFFEE", 90);
 
-                    discord.js('var core = new Core(); core.init();');
+                    discord.js('core.init();');
 
                     self.updateLoader("UNANIMITY - HERE WE GO!", 100);
 
@@ -103,7 +154,45 @@ Unanimity.prototype.start = function () {
             }
         });
 
+        ipc.on("un-ipc-setting", function (event, key, value) {
+            switch (key) {
+                case "unPluginUIEnabled":
+                    if (value) {
+                        // Injecting UI plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injecting-ui");
+                    } else {
+                        // Skipping UI plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injected-ui");
+                    }
+                    break;
+                case "unPluginSearchEnabled":
+                    if (value) {
+                        // Injecting Search plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injecting-search");
+                    } else {
+                        // Skipping Search plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injected-search");
+                    }
+                    break;
+                case "unPluginMuteEnabled":
+                    if (value) {
+                        // Injecting Mute plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injecting-mute");
+                    } else {
+                        // Skipping Mute plugin.
+                        discord.sendNotification("un-ipc-injection", "un-injected-mute");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+
         self.updateLoader("UNANIMITY - INJECTING JQUERY", 20);
+
+        /*
+         * Injecting mandatory jQuery.
+         */
         discord.injectJS("//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js", "un-injected-jquery");
     });
 };
