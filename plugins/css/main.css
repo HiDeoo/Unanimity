@@ -367,3 +367,16 @@
 .theme-dark .chat > .content .messages .message-text.un-searchCurrent:after {
     border-left: 4px solid #7289d9;
 }
+
+/*
+ * Settings
+ */
+
+.checkbox.disabled {
+    cursor: not-allowed;
+}
+
+.checkbox.disabled .checkbox-inner input[type=checkbox]:checked + span {
+    border-color: #a4a8b5;
+    background-color: #a4a8b5;
+}
