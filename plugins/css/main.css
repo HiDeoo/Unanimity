@@ -20,10 +20,6 @@
     padding: 0 0 0 15px;
 }
 
-.un-ui .guild-channels header:first-child {
-    margin-right: 20px;
-}
-
 .un-ui .guild-channels ul .channel-text a {
     padding: 7px 0 8px 15px;
 }
@@ -100,6 +96,10 @@
     font-style: italic;
 }
 
+.un-ui .embed .embed-description {
+    display: none;
+}
+
 .un-ui .message-group.compact .message .markup {
     text-indent: -85px;
 }
@@ -119,6 +119,10 @@
 }
 
 .un-ui .message-group .mentioned .message-text:after {
+    left: -4px;
+}
+
+.un-ui .message-group.compact .mentioned .message-text:after {
     left: 0;
 }
 
@@ -347,13 +351,17 @@
 .chat > .content .messages .message-text.un-searchHighlight:after {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -4px;
     bottom: 0;
     content: ' ';
     background: rgba(250, 242, 26, .2);
     border-left: 4px solid #e8db0f;
     -webkit-border-radius: 2px 0 0 2px;
     border-radius: 2px 0 0 2px;
+}
+
+.chat > .content .messages .compact .message-text.un-searchHighlight:after {
+    left: 0;
 }
 
 .theme-dark .chat > .content .messages .message-text.un-searchHighlight:after {
