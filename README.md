@@ -1,3 +1,9 @@
+# Now that Discord natively supports features implemented by this project, it has been deprecated and this repository has been archived.
+
+If you are still looking for Discord tweaks, check projects like [BetterDiscord](https://betterdiscord.net).
+
+---
+
 # Unanimity
 
 Unanimity add [features](#features) to Discord.
